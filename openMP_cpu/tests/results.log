@@ -1,0 +1,48 @@
+Running 6 test cases...
+Entering test suite "Point"
+Entering test suite "PointSuite"
+Entering test case "createPoint"
+Leaving test case "createPoint"; testing time: 310mks
+Entering test case "constructPoint"
+Leaving test case "constructPoint"; testing time: 292mks
+Entering test case "PointExceptions"
+Test case PointExceptions did not check any assertions
+Leaving test case "PointExceptions"; testing time: 261mks
+Leaving test suite "PointSuite"
+Entering test suite "RosenbrockSuite"
+Entering test case "optimalPoint"
+Leaving test case "optimalPoint"; testing time: 311mks
+Entering test case "randomPoint"
+Leaving test case "randomPoint"; testing time: 270mks
+Entering test case "basePoint"
+Leaving test case "basePoint"; testing time: 267mks
+Leaving test suite "RosenbrockSuite"
+Leaving test suite "Point"
+Running 10 test cases...
+Entering test suite "Individual"
+Entering test suite "IndividualSuite"
+Entering test case "PointIssues"
+Leaving test case "PointIssues"; testing time: 316mks
+Entering test case "createIndividual"
+Leaving test case "createIndividual"; testing time: 333mks
+Entering test case "constructIndividual"
+Leaving test case "constructIndividual"; testing time: 265mks
+Entering test case "constructPoint"
+Leaving test case "constructPoint"; testing time: 238mks
+Entering test case "mutate"
+Leaving test case "mutate"; testing time: 234mks
+Entering test case "crossover"
+Leaving test case "crossover"; testing time: 231mks
+Entering test case "IndividualExceptions"
+Test case IndividualExceptions did not check any assertions
+Leaving test case "IndividualExceptions"; testing time: 210mks
+Leaving test suite "IndividualSuite"
+Entering test suite "IndividualRosenbrockSuite"
+Entering test case "optimalPoint"
+Leaving test case "optimalPoint"; testing time: 214mks
+Entering test case "randomIndividual"
+Leaving test case "randomIndividual"; testing time: 218mks
+Entering test case "baseIndividual"
+Leaving test case "baseIndividual"; testing time: 213mks
+Leaving test suite "IndividualRosenbrockSuite"
+Leaving test suite "Individual"

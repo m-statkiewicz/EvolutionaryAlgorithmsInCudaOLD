@@ -1,0 +1,25 @@
+/*
+ * individual.h
+ */
+
+#ifndef INDIVIDUAL
+#define INDIVIDUAL
+
+#include"point.h"
+
+#include<cstdlib>
+#include<iostream>
+
+class Particle : public Point {
+private:
+
+public:
+	Particle(int size);
+	Particle(const Particle* i);
+	Particle(const Particle& i);
+	~Particle();
+	
+};
+
+
+#endif
