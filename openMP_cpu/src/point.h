@@ -8,11 +8,16 @@
 #include<cstdlib>
 #include<iostream>
 
+#define RADIUS 2
+#define PRECISION 10000
+
 class Point {
 protected:
 	int size;	
 	float* value;
-	
+	float eval;
+    bool isEvalCorrect;
+
 public:
 	Point();
 	Point(int size);
@@ -21,11 +26,14 @@ public:
 	~Point();
 	
 	int getSize() const;
+	float getEval() const;
 	float getCoord(int i) const;
 	void setCoord(int i, float val);
 	
-	float evaluate() const;
+	void evaluate();
 	void generateRandom();
+    
+    bool operator<(const Point& other) const;
 
 	friend std::ostream& operator<< (std::ostream &os, Point & p);
 };

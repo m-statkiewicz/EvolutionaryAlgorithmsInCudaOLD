@@ -53,7 +53,6 @@ BOOST_AUTO_TEST_CASE( constructIndividual )
     delete ind;
     delete i1;
     delete i2;
-
 }
 BOOST_AUTO_TEST_CASE( constructPoint )
 {
@@ -78,6 +77,21 @@ BOOST_AUTO_TEST_CASE( constructPoint )
 	delete ind;
     delete p1;
     delete p2;
+}
+BOOST_AUTO_TEST_CASE( constructIndFromPoint )
+{
+    Point* p = new Point(POINT_SIZE);
+    p->generateRandom();
+    Individual* ind1 = new Individual(p);
+    Individual* ind2 = new Individual(*p);
+    BOOST_CHECK_EQUAL( ind1->getSize() , ind2->getSize() );	
+    for (int i=0; i<POINT_SIZE; ++i) {
+    	BOOST_CHECK_EQUAL( ind1->getCoord(i) , ind2->getCoord(i) );
+    }
+
+	delete ind1;
+    delete ind2;
+    delete p;
 }
 BOOST_AUTO_TEST_CASE( mutate )
 {
@@ -132,21 +146,24 @@ BOOST_AUTO_TEST_CASE( optimalPoint )
     Individual* ind = new Individual(POINT_SIZE);
     for (int i=0; i<POINT_SIZE; ++i)
 		ind->setCoord(i,1.0);
-    BOOST_CHECK_EQUAL( ind->evaluate(), 0 );
+	ind->evaluate();
+    BOOST_CHECK_EQUAL( ind->getEval() , 0 );
     delete ind;
 }
 BOOST_AUTO_TEST_CASE( randomIndividual )
 {
     Individual* ind = new Individual(POINT_SIZE);
     ind->generateRandom();
-    BOOST_CHECK_GT( ind->evaluate() , 0 );
+    ind->evaluate();
+    BOOST_CHECK_GT( ind->getEval() , 0 );
     delete ind;
 }
 
 BOOST_AUTO_TEST_CASE( baseIndividual )
 {
     Individual* ind = new Individual(POINT_SIZE);
-    BOOST_CHECK_GT( ind->evaluate() , 0 ); 
+    ind->evaluate();
+    BOOST_CHECK_GT( ind->getEval() , 0 ); 
     delete ind;
 }
 BOOST_AUTO_TEST_SUITE_END()

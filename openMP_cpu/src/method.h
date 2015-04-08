@@ -1,26 +1,20 @@
 /*
- * strategy.h
+ * method.h
  */
 
-#ifndef STRATEGY
-#define STRATEGY
+#ifndef METHOD		
+#define METHOD
 
-#include<cstdlib>
 #include<vector>
 
-#include"state.h"
+#include"point.h"
 
-/*
-class OnePlusLambdaStrategy
+class Method
 {
+//protected:
+//bool compare(const Point& a,const Point& b) const;
 public:
-	State operator () (const int lambda, const State & initialState,const int iterations,const float sigma_, const int k) const;
-};
-*/
-class MiPlusLambdaStrategy
-{
-public:
-	State operator () (const int mi, const int lambda, const int iterations, const int p,const int threads, const std::vector<State*>& initialStates) const;
+	Point operator () (const std::vector<Point*>& initialPoints) const;
 };
 
 #endif

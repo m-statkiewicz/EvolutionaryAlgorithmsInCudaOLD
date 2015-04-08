@@ -8,19 +8,43 @@
 #include<cstdlib>
 #include<vector>
 
-#include"state.h"
+#include"method.h"
 
-/*
-class OnePlusLambdaStrategy
+class Strategy : public Method
 {
+private:
+	int mi;
+	int lambda;
+	int iterations;
+
 public:
-	State operator () (const int lambda, const State & initialState,const int iterations,const float sigma_, const int k) const;
+	Strategy (int mi, int lambda, int iterations);
+	Point operator () (const std::vector<Point*>& initialPoints) const;
 };
-*/
-class MiPlusLambdaStrategy
+
+class MiPlusLambdaStrategy : public Method
 {
+private:
+	int mi;
+	int lambda;
+	int iterations;
+
 public:
-	State operator () (const int mi, const int lambda, const int iterations, const int p,const int threads, const std::vector<State*>& initialStates) const;
+	MiPlusLambdaStrategy (int mi, int lambda, int iterations);
+	Point operator () (const std::vector<Point*>& initialPoints) const;
 };
+
+class MiLambdaStrategy : public Method
+{
+private:
+	int mi;
+	int lambda;
+	int iterations;
+
+public:
+	MiLambdaStrategy (const int mi, const int lambda, const int iterations);
+	Point operator () (const std::vector<Point*>& initialPoints) const;
+};
+
 
 #endif

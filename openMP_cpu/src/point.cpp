@@ -2,12 +2,10 @@
 #include <climits>
 #include "point.h"
 
-#define RADIUS 40
-#define PRECISION 1000
-
 Point::Point(){
 	size=0;
 	value = NULL;
+	isEvalCorrect=0;
 };
 
 Point::Point(int size){
@@ -15,6 +13,7 @@ Point::Point(int size){
 	value = new float[size];
 	for (int i = 0; i<size; ++i)
 		value[i]=0;
+	isEvalCorrect=0;
 };
 
 
@@ -23,6 +22,8 @@ Point::Point(const Point * p){
 	value = new float[size];
 	for (int i = 0; i<size; ++i)
 		value[i]=p->value[i];	
+	eval=p->eval;
+	isEvalCorrect=p->isEvalCorrect;
 };
 
 Point::Point(const Point & p){
@@ -30,6 +31,8 @@ Point::Point(const Point & p){
 	value = new float[size];
 	for (int i = 0; i<size; ++i)
 		value[i]=p.value[i];	
+	eval=p.eval;
+	isEvalCorrect=p.isEvalCorrect;
 };
 
 Point::~Point(){
@@ -41,22 +44,42 @@ int Point::getSize() const{
 }
 
 float Point::getCoord(int i) const{
+    // TODO throw exception in case of i>=size
     return value[i];
 }
 	
 void Point::setCoord(int i, float val){
+    // TODO throw exception in case of i>=size
     this->value[i]=val;
 }
+
+float Point::getEval() const {
+    // TODO throw exception in case of isEvalCorrect=-=
+    return eval;
+}
 	
-float Point::evaluate() const{
-	//Rosenbrock function
-	float sum=0, prod=1;
-	for (int i = 0; i<size-1; ++i)
-	{
-		sum+=(1-value[i])*(1-value[i])
-		    +100*(value[i+1]-value[i]*value[i])*(value[i+1]-value[i]*value[i]);
+void Point::evaluate() {
+	//if (isEvalCorrect==0)
+	{		
+		
+		//Rosenbrock function
+		eval=0;
+		for (int i = 0; i<size-1; ++i)
+		{
+			eval+=(1-value[i])*(1-value[i])
+			    +100*(value[i+1]-value[i]*value[i])*(value[i+1]-value[i]*value[i]);
+		}
+		
+		/*
+		//Quadratic function
+		eval=0;
+		for (int i = 0; i<size; ++i)
+		{
+			eval+=value[i]*value[i];
+		}
+		*/
 	}
-	return sum;
+	isEvalCorrect=1;
 };
 
 void Point::generateRandom(){
@@ -64,8 +87,13 @@ void Point::generateRandom(){
 		value[i]=(float)(rand()%(2*RADIUS*PRECISION))/PRECISION-RADIUS;
 };
 
+
+bool Point::operator<(const Point& other) const {
+    return getEval()<other.getEval();
+}
+    
 std::ostream& operator<< (std::ostream &os, Point & p){
-	os<<"size="<<p.size<<"\n";	
+//	os<<"size="<<p.size<<"\n";	
 	os<<"values=[";
 	for (int i=0; i<p.getSize(); ++i)
 	{
@@ -73,8 +101,8 @@ std::ostream& operator<< (std::ostream &os, Point & p){
 	if (i<p.getSize()-1) 
 		os<<",";
 	}
-	os<<"]\n";
-	os<<"eval="<<p.evaluate()<<"\n";
+	os<<"]\t";
+	os<<"eval="<<p.getEval()<<"\n";
 	return os;
 };
 

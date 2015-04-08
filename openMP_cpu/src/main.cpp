@@ -1,73 +1,51 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 #include<stdlib.h>
 #include<time.h>
 #include<omp.h>
-#include"state.h"
-#include"strategy.h"
+#include"point.h"
+#include"method.h"
 #include"timer.h"
+#include "mipluslambdastrategy.h"
+#include "milambdastrategy.h"
+
 
 #define VERSION 0.1
+#define VECTOR_SIZE 10
+#define POINT_SIZE 2
+
 
 int main (int argc, char **argv){
 
-int n = 2;
-int mi = 2;
-int lambda = 3;
-int iterations = 5;
-int populations = 5;
-int threads = 5;
+    srand(time(NULL));
+    MiPlusLambdaStrategy m (5, 10, 100);
+//    MiLambdaStrategy m (100, 400, 5000);
+    std::vector<Point*> initPoints;
+    Point* p;
+    for (int i=0; i<VECTOR_SIZE; ++i) {
+        p = new Point(POINT_SIZE);
+        p->generateRandom();
+        p->evaluate();
+        std::cout<<"p:"<<*p;
+        initPoints.push_back(p);
+    }
+    std::cout<<"\n\n";
+	for (int i=0; i<VECTOR_SIZE; ++i)
+        std::cout<<"initPoint["<<i<<"]:"<<*initPoints[i];
+	
+	Point* r = new Point(m(initPoints));
+    std::cout<<"r:"<<*r<<'\n';
 
-MiPlusLambdaStrategy strategy;
-Timer t;
+  //    for (int i=0; i<VECTOR_SIZE; ++i)    
+  //    BOOST_CHECK_GT(r->getEval() ,initPoints[i]->getEval());
 
-for (int i=1; i<argc; ++i){
-//	std::cout<<argv[i]<<' '<<argv[i+1]<<' ';
-	if (std::string(argv[i])=="-n"){
-		std::stringstream str(argv[++i]);
-		str>>n;
-	}
-	if (std::string(argv[i])=="-m"){
-		std::stringstream str(argv[++i]);
-		str>>mi;
-	}
-	if (std::string(argv[i])=="-l"){
-		std::stringstream str(argv[++i]);
-		str>>lambda;
-	}
-	if (std::string(argv[i])=="-i"){
-		std::stringstream str(argv[++i]);
-		str>>iterations;
-	}
-	if (std::string(argv[i])=="-p"){
-		std::stringstream str(argv[++i]);
-		str>>populations;
-	}
-	if (std::string(argv[i])=="-t"){
-		std::stringstream str(argv[++i]);
-		str>>threads;
-	}
-}
-std::vector<State*> initialStates;
-srand(time(NULL));
-State* optstate = NULL;
-State* tmp;
+  //  for (int i=0; i<VECTOR_SIZE; ++i) {
+  //      delete initPoints[i];
+   // }
+  //  delete r;
 
-for (int i=0;i<mi;++i)
-{
-	tmp = new State(n);
-	tmp->generateRandomState();
-	initialStates.push_back(tmp);
-}
-t.start();
-optstate = new State(strategy(mi,lambda,iterations,populations,threads,initialStates));
-t.stop();
-//std::cout<<*optstate<<std::endl;
-//std::cout<<std::endl<<"optimum eval. = "<<optstate->evaluate()<<std::endl;
-//std::cout<<"delta time = "<<t.deltaToString()<<std::endl<<std::endl;
-std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
-std::cout<<optstate->evaluate()<<';'<<t.deltaToString()<<std::endl;
-delete optstate;
+
 return 0;
 }
-
+	

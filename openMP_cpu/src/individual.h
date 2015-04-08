@@ -18,6 +18,8 @@ public:
 	Individual(int size);
 	Individual(const Individual* i);
 	Individual(const Individual& i);
+	Individual(const Point* p);
+	Individual(const Point& p);
 	~Individual();
 	
 	float getSigma(int i) const;

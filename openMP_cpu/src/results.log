@@ -1,0 +1,67 @@
+Running 6 test cases...
+Entering test suite "Point"
+Entering test suite "PointSuite"
+Entering test case "createPoint"
+Leaving test case "createPoint"; testing time: 427mks
+Entering test case "constructPoint"
+Leaving test case "constructPoint"; testing time: 268mks
+Entering test case "PointExceptions"
+Test case PointExceptions did not check any assertions
+Leaving test case "PointExceptions"; testing time: 505mks
+Leaving test suite "PointSuite"
+Entering test suite "RosenbrockSuite"
+Entering test case "optimalPoint"
+Leaving test case "optimalPoint"; testing time: 315mks
+Entering test case "randomPoint"
+Leaving test case "randomPoint"; testing time: 273mks
+Entering test case "basePoint"
+Leaving test case "basePoint"; testing time: 249mks
+Leaving test suite "RosenbrockSuite"
+Leaving test suite "Point"
+Running 1 test case...
+Entering test suite "Method"
+Entering test suite "MethodSuite"
+Entering test case "createMethod"
+Leaving test case "createMethod"; testing time: 322mks
+Leaving test suite "MethodSuite"
+Leaving test suite "Method"
+Running 11 test cases...
+Entering test suite "Individual"
+Entering test suite "IndividualSuite"
+Entering test case "PointIssues"
+Leaving test case "PointIssues"; testing time: 377mks
+Entering test case "createIndividual"
+Leaving test case "createIndividual"; testing time: 370mks
+Entering test case "constructIndividual"
+Leaving test case "constructIndividual"; testing time: 220mks
+Entering test case "constructPoint"
+Leaving test case "constructPoint"; testing time: 217mks
+Entering test case "constructIndFromPoint"
+Leaving test case "constructIndFromPoint"; testing time: 221mks
+Entering test case "mutate"
+Leaving test case "mutate"; testing time: 236mks
+Entering test case "crossover"
+Leaving test case "crossover"; testing time: 199mks
+Entering test case "IndividualExceptions"
+Test case IndividualExceptions did not check any assertions
+Leaving test case "IndividualExceptions"; testing time: 190mks
+Leaving test suite "IndividualSuite"
+Entering test suite "IndividualRosenbrockSuite"
+Entering test case "optimalPoint"
+Leaving test case "optimalPoint"; testing time: 190mks
+Entering test case "randomIndividual"
+Leaving test case "randomIndividual"; testing time: 190mks
+Entering test case "baseIndividual"
+Leaving test case "baseIndividual"; testing time: 190mks
+Leaving test suite "IndividualRosenbrockSuite"
+Leaving test suite "Individual"
+Running 2 test cases...
+Entering test suite "Strategy"
+Entering test suite "StrategySuite"
+Entering test case "MiPlusLambdaStrategy"
+Leaving test case "MiPlusLambdaStrategy"; testing time: 527mks
+Entering test case "MiLambdaStrategy"
+Test case MiLambdaStrategy did not check any assertions
+Leaving test case "MiLambdaStrategy"; testing time: 284mks
+Leaving test suite "StrategySuite"
+Leaving test suite "Strategy"

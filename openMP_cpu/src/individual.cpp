@@ -6,8 +6,8 @@
 #include <math.h>
 #include <climits>
 
-#define RADIUS 40
-#define PRECISION 1000
+//#define RADIUS 10
+//#define PRECISION 10
 
 Individual::Individual(int size) : Point(size){
 	sigma = new float[size];
@@ -25,6 +25,18 @@ Individual::Individual(const Individual & i) : Point(i){
 	sigma = new float[size];
 	for (int it = 0; it<size; ++it)
 		sigma[it]=i.sigma[it];
+};
+
+Individual::Individual(const Point * p) : Point(p){
+	sigma = new float[size];
+	for (int it = 0; it<size; ++it)
+		sigma[it]=(float)(rand()%(2*PRECISION))/PRECISION-1;
+};
+
+Individual::Individual(const Point & p) : Point(p){
+	sigma = new float[size];
+	for (int it = 0; it<size; ++it)
+		sigma[it]=(float)(rand()%(2*PRECISION))/PRECISION-1;
 };
 
 Individual::~Individual(){
@@ -55,6 +67,7 @@ void Individual::mutate(){
 		float xi_val=(float)rand()/INT_MAX;
 		value[i]=value[i]+sigma[i]*xi_val;	
 	}
+    isEvalCorrect=0;
 };
 
 void Individual::crossover(Individual* ind){
@@ -71,4 +84,5 @@ void Individual::crossover(Individual* ind){
 			ind->sigma[i]=tmp_sigma;
 		}
 	}
+	isEvalCorrect=0;
 }
